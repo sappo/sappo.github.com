@@ -4,7 +4,7 @@
 
 # Site
 title: Kevin Sapper
-subtitle: Blogging about ZeroMQ, Linux tools, ...
+subtitle: Blogging about ZeroMQ, Linux and vi.
 description:
 author: Kevin Sapper
 language:
@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://kevinsapper.de
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
