@@ -1,20 +1,22 @@
 ---
 title: Cross compiling autotools projects for the Raspberry Pi
-date: 2016-08-12 09:27:02
-tags: pi, autotools
+date: 2016-08-15 10:23:05
+tags: pi
 ---
+
+(This blog post is work in progress!)
 
 There is are a lot of information on the internet that explains how to cross
 compile software for the Raspberry Pi. But this information is scattered into
 tiny pieces and a lot of advice is just wrong or cumbersome.
 
-In this blog I'll exlain to you how to cross compile most autotools projects.
+In this blog post I will explain how to cross compile most autotools projects.
 
 ## Toolchain
 
-At first we need to get a cross compiler toolchain and a sysroot environment.
-Luckily the raspberry pi foundation does provide both on their github profile.
-So we'll can just clone them onto our computer.
+At first we need to get a cross compile toolchain and a sysroot environment for
+the Raspberry Pi. Luckily the Raspberry Pi Foundation does provide both on their
+github profile. So we'll can just clone them to our computer.
 
 ```bash
 $ git clone --depth 1 https://github.com/raspberrypi/tools rpi-tools
@@ -40,7 +42,7 @@ AR="${TOOLCHAIN_PATH}/${TOOLCHAIN_HOST}-ar"
 RANLIB="${TOOLCHAIN_PATH}/${TOOLCHAIN_HOST}-ranlib"
 ```
 
-There are more but for most projects those are suffcient. Further we need the
+There are more but for most projects those are sufficient. Further we need the
 sysroot environment for this toolchain and add it to our compiler flags.
 
 ```bash
@@ -78,7 +80,7 @@ BUILD_PREFIX=$PWD/tmp
 CONFIG_OPTS+=("--prefix=${BUILD_PREFIX}")
 ```
 
-A lot of project use pkg-conf to find dependencies therefore we tell autotools
+A lot of project use pkgconf to find dependencies therefore we tell autotools
 where to find raspberry pi specific pkg-conf configuartions.
 
 ```bash
@@ -87,12 +89,19 @@ CONFIG_OPTS+=("PKG_CONFIG_LIBDIR=${SYSROOT}/usr/lib/arm-linux-gnueabihf/pkgconfi
 CONFIG_OPTS+=("PKG_CONFIG_SYSROOT=${SYSROOT}")
 ```
 
-We might have to cross compile dependencies ourself. That's why we let pkg-conf
+We might have to cross compile dependencies ourselves. That's why we let pkgconf
 look into our install directory for dependencies as well.
 
 ```bash
 CONFIG_OPTS+=("PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig")
 ```
+
+## Building
+
+Finally we can start building the project. In this example I will compile the
+ZeroMQ's libzmq and higher level binding czmq to demonstrate that self compiled
+dependencies are detected as well. As you can see the building steps are the
+default one complemented with our `CONFIG_OPTS`:
 
 ```bash
 if [ ! -e libzmq ]; then
