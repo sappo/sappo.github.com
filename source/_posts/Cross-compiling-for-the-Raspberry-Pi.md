@@ -1,7 +1,9 @@
 ---
+
 title: Cross compiling autotools projects for the Raspberry Pi
 date: 2016-08-15 10:23:05
 tags: pi
+
 ---
 
 (This blog post is work in progress!)
@@ -26,9 +28,10 @@ Note that I used the attribute `--depth 1` which tells git only to fetch data
 from the latest commit. As the tools repository is rather large this minimizes
 the amount of data we have to download.
 
-We will use the `arm-linux-gnueabihf` cross compiler which is at the
-time of this writing the latest and seems to support all raspberry device
-versions. The next step to get a hold of tools the toolchain provides.
+We will use the `arm-linux-gnueabihf` cross compiler which is at the time of
+this git@github.com:sappo/sappo.github.io.git the latest and seems to support
+all raspberry device versions. The next step to get a hold of tools the
+toolchain provides.
 
 ```bash
 TOOLCHAIN_HOST="arm-linux-gnueabihf"

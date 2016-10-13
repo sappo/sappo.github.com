@@ -71,4 +71,4 @@ theme: clean-blog
 deploy:
   type: git
   repo:
-      github: https://github.com/sappo/sappo.github.com.git,master
+      github: git@github.com:sappo/sappo.github.com.git,master
