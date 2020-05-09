@@ -125,3 +125,10 @@ pushd czmq
 ) || exit 1
 popd
 ```
+
+## Update
+
+The czmq library contains a cross-compile build script for the RPI that I
+created after writing this blog post:
+
+https://github.com/zeromq/czmq/tree/master/builds/rpi
